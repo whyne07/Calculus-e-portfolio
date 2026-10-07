@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculus E-Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #f8f3ec;
+            color: #4b4038;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 70px 20px 45px;
+        }
+
+        .small-title {
+            color: #a88972;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(42px, 7vw, 76px);
+            font-weight: 500;
+            color: #55473d;
+            margin-bottom: 15px;
+        }
+
+        header p {
+            max-width: 600px;
+            margin: auto;
+            line-height: 1.8;
+            color: #8b7b6e;
+            font-size: 16px;
+        }
+
+        .gallery {
+            width: min(1100px, 90%);
+            margin: 20px auto 80px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .image-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            background: #eadfd3;
+            box-shadow: 0 10px 30px rgba(86, 66, 50, 0.08);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .image-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 18px 40px rgba(86, 66, 50, 0.16);
+        }
+
+        .image-card a {
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 350px;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.6s ease, filter 0.6s ease;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.88);
+        }
+
+        .image-card a:focus-visible {
+            outline: 3px solid #b98779;
+            outline-offset: 3px;
+        }
+
+        .caption {
+            position: absolute;
+            left: 18px;
+            bottom: 18px;
+            padding: 9px 15px;
+            background: rgba(255, 250, 244, 0.88);
+            backdrop-filter: blur(8px);
+            border-radius: 50px;
+            color: #625248;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            pointer-events: none;
+        }
+
+        .reflection-card {
+            grid-column: span 2;
+            position: relative;
+            overflow: hidden;
+            min-height: 480px;
+            padding: 60px 70px;
+            border-radius: 24px;
+            background: linear-gradient(
+                135deg,
+                #efe3d6 0%,
+                #f8eee5 50%,
+                #eadbd0 100%
+            );
+            box-shadow: 0 10px 30px rgba(86, 66, 50, 0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .reflection-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 18px 40px rgba(86, 66, 50, 0.16);
+        }
+
+        .reflection-card::before {
+            content: "";
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: rgba(185, 135, 121, 0.10);
+            top: -90px;
+            right: -60px;
+        }
+
+        .reflection-card::after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(168, 137, 114, 0.08);
+            bottom: -70px;
+            left: -50px;
+        }
+
+        .reflection-label {
+            position: relative;
+            z-index: 1;
+            color: #a88972;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .reflection-card h2 {
+            position: relative;
+            z-index: 1;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 500;
+            color: #55473d;
+            margin-bottom: 25px;
+        }
+
+        .reflection-card p {
+            position: relative;
+            z-index: 1;
+            max-width: 850px;
+            color: #75675d;
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 15px;
+        }
+
+        .reflection-line {
+            position: relative;
+            z-index: 1;
+            width: 55px;
+            height: 2px;
+            background: #b98779;
+            margin: 15px 0;
+        }
+
+        .reflection-ending {
+            position: relative;
+            z-index: 1;
+            color: #a88972;
+            font-family: "Playfair Display", serif;
+            font-size: 17px;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px 50px;
+            color: #a18e7e;
+            font-size: 14px;
+        }
+
+        .heart {
+            color: #b98779;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                padding: 50px 20px 35px;
+            }
+
+            .small-title {
+                font-size: 12px;
+                letter-spacing: 2px;
+            }
+
+            h1 {
+                font-size: 48px;
+                line-height: 1.1;
+            }
+
+            header p {
+                font-size: 14px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .image-card,
+            .image-card.feature,
+            .reflection-card {
+                grid-column: span 1;
+            }
+
+            .image-card img {
+                height: 300px;
+            }
+
+            .reflection-card {
+                min-height: auto;
+                padding: 40px 28px;
+            }
+
+            .reflection-card h2 {
+                font-size: 34px;
+                line-height: 1.2;
+            }
+
+            .reflection-card p {
+                font-size: 14px;
+                line-height: 1.8;
+            }
+
+            .reflection-ending {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="small-title">
+            Las Pinas, Jezziree Whayne P.
+        </div>
+
+        <h1>
+            CALCULUS E-PORTFOLIO
+        </h1>
+
+        <p>
+            Calculus - 2116 - WD - 202
+        </p>
+    </header>
+
+    <main class="gallery">
+
+        <section class="reflection-card">
+
+            <div class="reflection-label">
+                My Reflection
+            </div>
+
+            <h2>
+                My Calculus Journey
+            </h2>
+
+            <p>
+                Studying Calculus has been a challenging but meaningful experience for me. I may have forgotten where I placed some of my other activities and lessons, and I may not remember every topic as clearly as I would like, but I can still say that I learned a lot throughout this subject. There were many times when I found the lessons confusing, especially when solving problems that required several steps and careful thinking. Sometimes, I would make mistakes or feel frustrated when I could not get the correct answer right away. However, as I continued practicing and trying to understand the lessons, I slowly became more comfortable with them.
+            </p>
+
+            <p>
+                Through studying Calculus, I learned that learning is not always about memorizing every formula or remembering every activity. It is also about the experience, the effort, and the lessons we gain along the way. Calculus taught me to be more patient and to think more carefully when solving problems. It also showed me that making mistakes is normal and that we should not give up just because something is difficult at first.
+            </p>
+
+            <p>
+                Looking back at my journey, I am grateful for everything I was able to learn from this subject. Even though I may have forgotten some of my activities and lessons, I know that the knowledge and skills I gained will stay with me. Calculus helped me improve my problem-solving skills and taught me to keep trying even when things become challenging. I still have a lot to learn, but I want to continue improving, practicing, and learning more in the future. I hope that the lessons I learned from Calculus will continue to help me not only in my studies but also in other challenges that I may face.
+            </p>
+
+            <div class="reflection-line"></div>
+
+            <span class="reflection-ending">
+                A little progress every day.
+            </span>
+
+        </section>
+
+        <div class="image-card">
+            <a href="img/Basic Differentiation Rules.jpg" target="_blank">
+                <img
+                    src="img/Basic Differentiation Rules.jpg"
+                    alt="Basic Differentiation Rules"
+                >
+            </a>
+
+            <div class="caption">
+                Basic Differentiation Rules
+            </div>
+        </div>
+
+        <div class="image-card">
+            <a href="img/The Chain Rule.jpg" target="_blank">
+                <img
+                    src="img/The Chain Rule.jpg"
+                    alt="The Chain Rule"
+                >
+            </a>
+
+            <div class="caption">
+                The Chain Rule
+            </div>
+        </div>
+
+        <div class="image-card">
+            <a href="img/Limits of Functions.jpg" target="_blank">
+                <img
+                    src="img/Limits of Functions.jpg"
+                    alt="Limits of Functions"
+                >
+            </a>
+
+            <div class="caption">
+                Limits of Functions
+            </div>
+        </div>
+
+        <div class="image-card">
+            <a href="img/Operations and Composition of Functions.jpg" target="_blank">
+                <img
+                    src="img/Operations and Composition of Functions.jpg"
+                    alt="Operations and Composition of Functions"
+                >
+            </a>
+
+            <div class="caption">
+                Operations and Composition of Functions
+            </div>
+        </div>
+
+        <div class="image-card">
+            <a href="img/Introduction to Differentiation.jpg" target="_blank">
+                <img
+                    src="img/Introduction to Differentiation.jpg"
+                    alt="Introduction to Differentiation"
+                >
+            </a>
+
+            <div class="caption">
+                Introduction to Differentiation
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        Made with <span class="heart">♥</span> and a little warmth.
+    </footer>
+
+</body>
+</html>
